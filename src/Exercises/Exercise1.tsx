@@ -24,7 +24,10 @@ const isEven = (countCharacters: number): boolean =>
 const getParityMessage = (isEven: boolean): string =>
     isEven ? 'ta liczba jest parzysta' : 'ta liczba nie jest parzysta';
 
-const processString = (word: string): string => {
+const processString = (word?: string): string => {
+    if (typeof word !== 'string' || word.length <= 0) {
+        return 'Podaj poprawne słowo';
+    }
     const wordLength = countCharacters(word);
     const isWordEven = isEven(wordLength);
     const parityMessage = getParityMessage(isWordEven);
@@ -38,6 +41,14 @@ const processString = (word: string): string => {
  - 'ta liczba nie jest parzysta'
 4. funkcję processString która na podstawie stringa, wypisuje go, wypisuje liczbę jego znaków oraz informację czy liczba znaków jest/nie jest parzysta. Funkcja ta powinna wywoływać 3 powyższe funkcje (zwraca string)
 */
+
+const getUsersOnlineMessage = (num?: number): string => {
+    if (!num || num <= 0) {
+        return 'Nikt nie jest dostępny';
+    }
+
+    return `Dostępne ${num}`;
+};
 
 function Exercise1() {
     return (
@@ -63,7 +74,14 @@ function Exercise1() {
                 </span>
             </div>
             <div>
-                Exe 4: <span>{processString('slowo')}</span>
+                Exe 4: <span>{processString('')}</span>
+            </div>
+            <div>
+                <h2>Zadanie 2</h2>
+                <li>{getUsersOnlineMessage(5)}</li>
+                <li>{getUsersOnlineMessage(60)}</li>
+                <li>{getUsersOnlineMessage()}</li>
+                <li>{getUsersOnlineMessage(-3)}</li>
             </div>
         </>
     );
